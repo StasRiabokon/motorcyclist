@@ -42,8 +42,10 @@ public class GUI extends Application {
     private static Button findButt;
     private static Button refreshButton;
 
+
     private static TextField firstField;
     private static TextField secondField;
+
 
 
     public static void main(String[] args) {
@@ -269,6 +271,8 @@ public class GUI extends Application {
 
         });
 
+
+
         hboxFor2Fields.getChildren().addAll(firstField, new Label("  "), secondField);
         HBox hboxForButtAddRem = new HBox();
         hboxForButtAddRem.getChildren().addAll(addButt, new Label("  "), remButt);
@@ -489,6 +493,7 @@ public class GUI extends Application {
         grid.add(typeFieldMotoProt, 3, 4);
         grid.add(sizeFieldMotoProt, 4, 4);
         grid.add(hBox, 4, 7);
+
         addButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -525,7 +530,7 @@ public class GUI extends Application {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-//
+
                     listForNameOfMotorcyclists.add(listMotoObjects.get(listMotoObjects.size() - 1).getFirstNameOfMotorcyclist() + " " + listMotoObjects.get(listMotoObjects.size() - 1).getSecondNameOfMotorcyclist());
                     listView.getItems().clear();
                     listView.getItems().addAll(listForNameOfMotorcyclists);
@@ -551,7 +556,14 @@ public class GUI extends Application {
             }
         });
 
-        Scene newSc = new Scene(grid, 800, 250);
+        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.close();
+            }
+        });
+
+      Scene  newSc = new Scene(grid, 800, 250);
         return newSc;
     }
 
