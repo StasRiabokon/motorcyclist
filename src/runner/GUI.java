@@ -5,17 +5,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.*;
 
+import java.io.IOException;
 import java.util.*;
 
 import static runner.IOData.*;
@@ -37,8 +36,8 @@ public class GUI extends Application {
     private static List<String> listForNameOfMotorcyclists;
 
     private static HBox hboxFor2Fields;
-//      private static Button addButt;
-//    private static Button remButt;
+    private static Button addButt;
+    private static Button remButt;
     private static Button sortButton;
     private static Button findButt;
     private static Button refreshButton;
@@ -66,10 +65,10 @@ public class GUI extends Application {
 
         hboxFor2Fields = new HBox();
 
-//        addButt = new Button("Add");
-//        addButt.setPrefWidth(70);
-//        remButt = new Button("Remove");
-//        remButt.setPrefWidth(70);
+        addButt = new Button("Add");
+        addButt.setPrefWidth(85);
+        remButt = new Button("Remove");
+        remButt.setPrefWidth(85);
         sortButton = new Button("Sort");
         sortButton.setPrefWidth(70);
         findButt = new Button("Find");
@@ -136,19 +135,19 @@ public class GUI extends Application {
 
         listView.getItems().addAll(listForNameOfMotorcyclists);
 
-//        addButt.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//
-//                stage = new Stage();
-//                stage.initModality(Modality.WINDOW_MODAL);
-//                stage.initOwner(primaryStage);
-//                stage.setScene(newScene());
-//                stage.setTitle("Add new Motorcyclist");
-//                stage.show();
-//
-//            }
-//        });
+        addButt.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                stage = new Stage();
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(primaryStage);
+                stage.setScene(newScene());
+                stage.setTitle("Add new Motorcyclist");
+                stage.show();
+
+            }
+        });
         sortButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -271,6 +270,8 @@ public class GUI extends Application {
         });
 
         hboxFor2Fields.getChildren().addAll(firstField, new Label("  "), secondField);
+        HBox hboxForButtAddRem = new HBox();
+        hboxForButtAddRem.getChildren().addAll(addButt, new Label("  "), remButt);
         gridPane.add(new Label("Motorcycle Name"), 0, 0);
         gridPane.add(new Label("Equipment"), 1, 0);
         gridPane.add(new Label("Price, UAH"), 2, 0);
@@ -278,6 +279,7 @@ public class GUI extends Application {
         gridPane.add(new Label("Feature 1"), 4, 0);
         gridPane.add(new Label("Feature 2"), 5, 0);
         gridPane.add(listView, 0, 1);
+        gridPane.add(hboxForButtAddRem, 0,2);
         gridPane.add(listViewNameOfEq, 1, 1);
         gridPane.add(hboxFor2Fields, 1, 2);
         gridPane.add(listViewPrice, 2, 1);
@@ -287,6 +289,7 @@ public class GUI extends Application {
         gridPane.add(listViewFeature1, 4, 1);
         gridPane.add(listViewFeature2, 5, 1);
         gridPane.add(refreshButton, 5, 2);
+
 
         ColumnConstraints col1 = new ColumnConstraints();
         col1.setPrefWidth(170);
@@ -407,150 +410,150 @@ public class GUI extends Application {
         return list;
     }
 
-//    private Scene newScene() {
+    private Scene newScene() {
+
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 20, 20, 20));
+        TextField motoName = new TextField();
+        motoName.setPromptText("Name");
+        TextField motoName2 = new TextField();
+        motoName2.setPromptText("Surname");
+
+        TextField priceFieldJacket = new TextField();
+        priceFieldJacket.setPromptText("Price");
+        TextField weightFieldJacket = new TextField();
+        weightFieldJacket.setPromptText("Weight");
+        TextField materialFieldJacket = new TextField();
+        materialFieldJacket.setPromptText("Material");
+        TextField sizeFieldJacket = new TextField();
+        sizeFieldJacket.setPromptText("Size");
+        TextField priceFieldHelmet = new TextField();
+        priceFieldHelmet.setPromptText("Price");
+        TextField weightFieldHelmet = new TextField();
+        weightFieldHelmet.setPromptText("Weight");
+        TextField colorFieldHelmet = new TextField();
+        colorFieldHelmet.setPromptText("Color");
+        ComboBox<String> openOrClosedComboBox = new ComboBox<String>();
+        openOrClosedComboBox.getItems().addAll("Open", "Closed");
+        openOrClosedComboBox.setPrefWidth(150);
+        TextField priceFieldGloves = new TextField();
+        priceFieldGloves.setPromptText("Price");
+        TextField weightFieldGloves = new TextField();
+        weightFieldGloves.setPromptText("Weight");
+        ComboBox<String> clippedOrNotComboBox = new ComboBox<String>();
+        clippedOrNotComboBox.getItems().addAll("Clipped", "Not clipped");
+        clippedOrNotComboBox.setPrefWidth(150);
+        TextField colorFieldGloves = new TextField();
+        colorFieldGloves.setPromptText("Color");
+        TextField priceFieldMotoProt = new TextField();
+        priceFieldMotoProt.setPromptText("Price");
+        TextField weightFieldMotoProt = new TextField();
+        weightFieldMotoProt.setPromptText("Weight");
+        TextField typeFieldMotoProt = new TextField();
+        typeFieldMotoProt.setPromptText("Type");
+        TextField sizeFieldMotoProt = new TextField();
+        sizeFieldMotoProt.setPromptText("Size");
+        Button addButton = new Button("Add");
+        addButton.setPrefWidth(70);
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setPrefWidth(70);
+        HBox hBox = new HBox();
+        HBox.setMargin(addButton, new Insets(0, 10, 0, 0));
+        hBox.getChildren().addAll(addButton, cancelButton);
+
+
+        grid.add(new Label("Full Name"), 0, 0);
+        grid.add(motoName, 1, 0);
+        grid.add(motoName2, 2, 0);
+        grid.add(new Label("Jacket"), 0, 1);
+        grid.add(priceFieldJacket, 1, 1);
+        grid.add(weightFieldJacket, 2, 1);
+        grid.add(materialFieldJacket, 3, 1);
+        grid.add(sizeFieldJacket, 4, 1);
+        grid.add(new Label("Helmet"), 0, 2);
+        grid.add(priceFieldHelmet, 1, 2);
+        grid.add(weightFieldHelmet, 2, 2);
+        grid.add(colorFieldHelmet, 3, 2);
+        grid.add(openOrClosedComboBox, 4, 2);
+        grid.add(new Label("Gloves"), 0, 3);
+        grid.add(priceFieldGloves, 1, 3);
+        grid.add(weightFieldGloves, 2, 3);
+        grid.add(clippedOrNotComboBox, 3, 3);
+        grid.add(colorFieldGloves, 4, 3);
+        grid.add(new Label("Moto Protection"), 0, 4);
+        grid.add(priceFieldMotoProt, 1, 4);
+        grid.add(weightFieldMotoProt, 2, 4);
+        grid.add(typeFieldMotoProt, 3, 4);
+        grid.add(sizeFieldMotoProt, 4, 4);
+        grid.add(hBox, 4, 7);
+        addButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                List<Equipment> equipmentListForMoto = new ArrayList<>();
+                if (!motoName.getText().equals("") && !motoName2.getText().equals("")) {
+                    if (!priceFieldJacket.getText().equals("") && !weightFieldJacket.getText().equals("")
+                            && !materialFieldJacket.getText().equals("") && !sizeFieldJacket.getText().equals("") &&
+                            !priceFieldHelmet.getText().equals("") && !weightFieldHelmet.getText().equals("")
+                            && !colorFieldHelmet.getText().equals("") && openOrClosedComboBox.getSelectionModel().getSelectedItem() != null &&
+                            !priceFieldGloves.getText().equals("") && !weightFieldGloves.getText().equals("")
+                            && clippedOrNotComboBox.getSelectionModel().getSelectedItem() != null && !colorFieldGloves.getText().equals("") &&
+                            !priceFieldMotoProt.getText().equals("") && !weightFieldMotoProt.getText().equals("")
+                            && !typeFieldMotoProt.getText().equals("") && !sizeFieldMotoProt.getText().equals("")) {
+                        equipmentListForMoto.add(new Jacket(Double.parseDouble(priceFieldJacket.getText()), Double.parseDouble(weightFieldJacket.getText()),
+                                "Jacket", materialFieldJacket.getText(), sizeFieldJacket.getText()));
+                        equipmentListForMoto.add(new Helmet(Double.parseDouble(priceFieldHelmet.getText()), Double.parseDouble(weightFieldHelmet.getText()),
+                                "Helmet", colorFieldHelmet.getText(), openOrClosedComboBox.getSelectionModel().getSelectedItem().equals("Open") ? true : false));
+                        equipmentListForMoto.add(new Gloves(Double.parseDouble(priceFieldGloves.getText()), Double.parseDouble(weightFieldGloves.getText()),
+                                "Gloves", clippedOrNotComboBox.getSelectionModel().getSelectedItem().equals("Clipped") ? true : false, colorFieldGloves.getText()));
+                        equipmentListForMoto.add(new MotoProtection(Double.parseDouble(priceFieldMotoProt.getText()), Double.parseDouble(weightFieldMotoProt.getText()),
+                                "MotoProtection", typeFieldMotoProt.getText(), sizeFieldMotoProt.getText()));
+                    } else return;
+                    Motorcyclist motorcyclist = new Motorcyclist(motoName.getText(), motoName2.getText(), equipmentListForMoto);
+                    try {
+                        writeMotoObj(motorcyclist);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    stage.close();
+                    try {
+                        List<Motorcyclist> list = new ArrayList<Motorcyclist>();
+                        list = readMotoObj(motorcyclist);
+                        listMotoObjects.addAll(list);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 //
-//
-//        GridPane grid = new GridPane();
-//        grid.setHgap(10);
-//        grid.setVgap(10);
-//        grid.setPadding(new Insets(20, 20, 20, 20));
-//        TextField motoName = new TextField();
-//        motoName.setPromptText("Name");
-//        TextField motoName2 = new TextField();
-//        motoName2.setPromptText("Surname");
-//
-//        TextField priceFieldJacket = new TextField();
-//        priceFieldJacket.setPromptText("Price");
-//        TextField weightFieldJacket = new TextField();
-//        weightFieldJacket.setPromptText("Weight");
-//        TextField materialFieldJacket = new TextField();
-//        materialFieldJacket.setPromptText("Material");
-//        TextField sizeFieldJacket = new TextField();
-//        sizeFieldJacket.setPromptText("Size");
-//        TextField priceFieldHelmet = new TextField();
-//        priceFieldHelmet.setPromptText("Price");
-//        TextField weightFieldHelmet = new TextField();
-//        weightFieldHelmet.setPromptText("Weight");
-//        TextField colorFieldHelmet = new TextField();
-//        colorFieldHelmet.setPromptText("Color");
-//        ComboBox<String> openOrClosedComboBox = new ComboBox<String>();
-//        openOrClosedComboBox.getItems().addAll("Open", "Closed");
-//        openOrClosedComboBox.setPrefWidth(150);
-//        TextField priceFieldGloves = new TextField();
-//        priceFieldGloves.setPromptText("Price");
-//        TextField weightFieldGloves = new TextField();
-//        weightFieldGloves.setPromptText("Weight");
-//        ComboBox<String> clippedOrNotComboBox = new ComboBox<String>();
-//        clippedOrNotComboBox.getItems().addAll("Clipped", "Not clipped");
-//        clippedOrNotComboBox.setPrefWidth(150);
-//        TextField colorFieldGloves = new TextField();
-//        colorFieldGloves.setPromptText("Color");
-//        TextField priceFieldMotoProt = new TextField();
-//        priceFieldMotoProt.setPromptText("Price");
-//        TextField weightFieldMotoProt = new TextField();
-//        weightFieldMotoProt.setPromptText("Weight");
-//        TextField typeFieldMotoProt = new TextField();
-//        typeFieldMotoProt.setPromptText("Type");
-//        TextField sizeFieldMotoProt = new TextField();
-//        sizeFieldMotoProt.setPromptText("Size");
-//        Button addButton = new Button("Add");
-//        addButton.setPrefWidth(70);
-//        Button cancelButton = new Button("Cancel");
-//        cancelButton.setPrefWidth(70);
-//        HBox hBox = new HBox();
-//        HBox.setMargin(addButton, new Insets(0, 10, 0, 0));
-//        hBox.getChildren().addAll(addButton, cancelButton);
-//
-//
-//        grid.add(new Label("Full Name"), 0, 0);
-//        grid.add(motoName, 1, 0);
-//        grid.add(motoName2, 2, 0);
-//        grid.add(new Label("Jacket"), 0, 1);
-//        grid.add(priceFieldJacket, 1, 1);
-//        grid.add(weightFieldJacket, 2, 1);
-//        grid.add(materialFieldJacket, 3, 1);
-//        grid.add(sizeFieldJacket, 4, 1);
-//        grid.add(new Label("Helmet"), 0, 2);
-//        grid.add(priceFieldHelmet, 1, 2);
-//        grid.add(weightFieldHelmet, 2, 2);
-//        grid.add(colorFieldHelmet, 3, 2);
-//        grid.add(openOrClosedComboBox, 4, 2);
-//        grid.add(new Label("Gloves"), 0, 3);
-//        grid.add(priceFieldGloves, 1, 3);
-//        grid.add(weightFieldGloves, 2, 3);
-//        grid.add(clippedOrNotComboBox, 3, 3);
-//        grid.add(colorFieldGloves, 4, 3);
-//        grid.add(new Label("Moto Protection"), 0, 4);
-//        grid.add(priceFieldMotoProt, 1, 4);
-//        grid.add(weightFieldMotoProt, 2, 4);
-//        grid.add(typeFieldMotoProt, 3, 4);
-//        grid.add(sizeFieldMotoProt, 4, 4);
-//        grid.add(hBox, 4, 7);
-//        addButton.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                List<Equipment> equipmentListForMoto = new ArrayList<>();
-//                if (!motoName.getText().equals("") && !motoName2.getText().equals("")) {
-//                    if (!priceFieldJacket.getText().equals("") && !weightFieldJacket.getText().equals("")
-//                            && !materialFieldJacket.getText().equals("") && !sizeFieldJacket.getText().equals("") &&
-//                            !priceFieldHelmet.getText().equals("") && !weightFieldHelmet.getText().equals("")
-//                            && !colorFieldHelmet.getText().equals("") && openOrClosedComboBox.getSelectionModel().getSelectedItem() != null &&
-//                            !priceFieldGloves.getText().equals("") && !weightFieldGloves.getText().equals("")
-//                            && clippedOrNotComboBox.getSelectionModel().getSelectedItem() != null && !colorFieldGloves.getText().equals("") &&
-//                            !priceFieldMotoProt.getText().equals("") && !weightFieldMotoProt.getText().equals("")
-//                            && !typeFieldMotoProt.getText().equals("") && !sizeFieldMotoProt.getText().equals("")) {
-//                        equipmentListForMoto.add(new Jacket(Double.parseDouble(priceFieldJacket.getText()), Double.parseDouble(weightFieldJacket.getText()),
-//                                "Jacket", materialFieldJacket.getText(), sizeFieldJacket.getText()));
-//                        equipmentListForMoto.add(new Helmet(Double.parseDouble(priceFieldHelmet.getText()), Double.parseDouble(weightFieldHelmet.getText()),
-//                                "Helmet", colorFieldHelmet.getText(), openOrClosedComboBox.getSelectionModel().getSelectedItem().equals("Open") ? true : false));
-//                        equipmentListForMoto.add(new Gloves(Double.parseDouble(priceFieldGloves.getText()), Double.parseDouble(weightFieldGloves.getText()),
-//                                "Gloves", clippedOrNotComboBox.getSelectionModel().getSelectedItem().equals("Clipped") ? true : false, colorFieldGloves.getText()));
-//                        equipmentListForMoto.add(new MotoProtection(Double.parseDouble(priceFieldMotoProt.getText()), Double.parseDouble(weightFieldMotoProt.getText()),
-//                                "MotoProtection", typeFieldMotoProt.getText(), sizeFieldMotoProt.getText()));
-//                    } else return;
-//                    Motorcyclist motorcyclist = new Motorcyclist(motoName.getText(), motoName2.getText(), equipmentListForMoto);
-//                    try {
-//                        writeMotoObj(motorcyclist);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    stage.close();
-//                    try {
-//                        List<Motorcyclist> list = new ArrayList<Motorcyclist>();
-//                        list = readMotoObj(motorcyclist);
-//                        listMotoObjects.addAll(list);
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-////
-//                    listForNameOfMotorcyclists.add(listMotoObjects.get(listMotoObjects.size() - 1).getFirstNameOfMotorcyclist() + " " + listMotoObjects.get(listMotoObjects.size() - 1).getSecondNameOfMotorcyclist());
-//                    listView.getItems().clear();
-//                    listView.getItems().addAll(listForNameOfMotorcyclists);
-//
-//                    clearAllViewLists();
-//                    if (listView.getSelectionModel().getSelectedItem() != null) {
-//                        List<Equipment> list = getEquipmentListOfSelectedMotercycle();
-//                        for (int j = 0; j < list.size(); j++) {
-//                            if (isJacket(list.get(j))) {
-//                                createJacketForViewList(list, j);
-//                            } else if (isHelmet(list.get(j))) {
-//                                createHelmetForViewList(list, j);
-//                            } else if (isGloves(list.get(j))) {
-//                                createGlovesForViewList(list, j);
-//                            } else if (isMotoProtection(list.get(j))) {
-//                                createMotoProtForViewList(list, j);
-//                            }
-//                        }
-//                    }
-//
-//                }
-//
-//            }
-//        });
-//
-//        Scene newSc = new Scene(grid, 800, 250);
-//        return newSc;
-//    }
+                    listForNameOfMotorcyclists.add(listMotoObjects.get(listMotoObjects.size() - 1).getFirstNameOfMotorcyclist() + " " + listMotoObjects.get(listMotoObjects.size() - 1).getSecondNameOfMotorcyclist());
+                    listView.getItems().clear();
+                    listView.getItems().addAll(listForNameOfMotorcyclists);
+
+                    clearAllViewLists();
+                    if (listView.getSelectionModel().getSelectedItem() != null) {
+                        List<Equipment> list = getEquipmentListOfSelectedMotorcyclist();
+                        for (int j = 0; j < list.size(); j++) {
+                            if (isJacket(list.get(j))) {
+                                createJacketForViewList(list, j);
+                            } else if (isHelmet(list.get(j))) {
+                                createHelmetForViewList(list, j);
+                            } else if (isGloves(list.get(j))) {
+                                createGlovesForViewList(list, j);
+                            } else if (isMotoProtection(list.get(j))) {
+                                createMotoProtForViewList(list, j);
+                            }
+                        }
+                    }
+
+                }
+
+            }
+        });
+
+        Scene newSc = new Scene(grid, 800, 250);
+        return newSc;
+    }
 
 
 }

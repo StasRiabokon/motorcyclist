@@ -8,12 +8,12 @@ import java.util.List;
 
 public class IOData {
 
-    //    public static void writeMotoObj(Motorcyclist motorcyclist) throws IOException {
-//        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("MotoObjects/"+motorcyclist.hashCode() + ".txt"));
-//        outputStream.writeObject(motorcyclist);
-//        outputStream.flush();
-//        outputStream.close();
-//    }
+        public static void writeMotoObj(Motorcyclist motorcyclist) throws IOException {
+        ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("MotoObjects/"+motorcyclist.hashCode() + ".txt"));
+        outputStream.writeObject(motorcyclist);
+        outputStream.flush();
+        outputStream.close();
+    }
     public static void writeMotoObjToMotoList() throws IOException {
         ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("MotoObjects/motoList.txt"));
         Equipment jacket1 = new Jacket(400, 2.5, "Jacket", "Leather", "XL");
@@ -120,28 +120,28 @@ public class IOData {
         outputStream.close();
     }
 
-//    public static void main(String[] args) throws IOException {
-//        List<Equipment> list3 = new ArrayList<>();
-//        Motorcyclist motorcyclist = new Motorcyclist("", "", list3);
-//        try {
-//            writeMotoObjToMotoList();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
+    public static void main(String[] args) throws IOException {
+        List<Equipment> list3 = new ArrayList<>();
+        Motorcyclist motorcyclist = new Motorcyclist("", "", list3);
+        try {
+            writeMotoObjToMotoList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-//    public static List<Motorcyclist> readMotoObj(Motorcyclist motorcyclist) throws IOException, ClassNotFoundException {
-//        FileInputStream fileInputStream = new FileInputStream("MotoObjects/"+motorcyclist.hashCode() + ".txt");
-//        ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
-//        List<Motorcyclist> list = new ArrayList<>();
-//
-//        while (fileInputStream.available() > 0) {
-//            list.add((Motorcyclist) inputStream.readObject());
-//        }
-//        return list;
-//
-//    }
+    }
+
+    public static List<Motorcyclist> readMotoObj(Motorcyclist motorcyclist) throws IOException, ClassNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream("MotoObjects/"+motorcyclist.hashCode() + ".txt");
+        ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
+        List<Motorcyclist> list = new ArrayList<>();
+
+        while (fileInputStream.available() > 0) {
+            list.add((Motorcyclist) inputStream.readObject());
+        }
+        return list;
+
+    }
 
     public static List<Motorcyclist> readFromMotoList() throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream("MotoObjects/motoList.txt");
